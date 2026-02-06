@@ -17,7 +17,8 @@ import { Mail, MessageSquare, Send, Github, Linkedin, Twitter } from 'lucide-rea
     <div class="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
       <!-- Contact Form -->
       <div class="glass-card p-8">
-        <form class="space-y-6" action="/api/contact" method="POST">
+        <div id="form-message" class="hidden mb-6 p-4 rounded-lg"></div>
+        <form id="contact-form" class="space-y-6" action="/api/contact" method="POST">
           <!-- Honeypot -->
           <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off" />
           
@@ -125,3 +126,44 @@ import { Mail, MessageSquare, Send, Github, Linkedin, Twitter } from 'lucide-rea
     </div>
   </div>
 </section>
+
+<script>
+  document.getElementById('contact-form')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    const messageDiv = document.getElementById('form-message');
+    const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    
+    if (!messageDiv || !submitBtn) return;
+    
+    // Disable submit button
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        body: formData
+      });
+      
+      const data = await response.json();
+      
+      if (data.success) {
+        messageDiv.className = 'mb-6 p-4 rounded-lg bg-teal-500/10 border border-teal-500/30 text-teal-400';
+        messageDiv.textContent = data.message;
+        messageDiv.classList.remove('hidden');
+        form.reset();
+      } else {
+        throw new Error(data.error || 'Failed to send message');
+      }
+    } catch (error) {
+      messageDiv.className = 'mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400';
+      messageDiv.textContent = 'Failed to send message. Please try emailing directly.';
+      messageDiv.classList.remove('hidden');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Send Message <svg class="w-4 h-4 inline ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>';
+    }
+  });
+</script>
