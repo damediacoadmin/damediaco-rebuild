@@ -1,27 +1,21 @@
 ---
-import { Target, Code, MessageSquare, Zap } from 'lucide-react';
-
 const principles = [
   {
-    icon: Target,
     title: 'Quality Over Speed',
     description: 'I build it right the first time. No shortcuts, no technical debt.',
     bgImage: '/philosophy/quality.jpg',
   },
   {
-    icon: Code,
     title: 'Clean, Maintainable Code',
     description: '20+ years means I know how to write code that lasts and scales.',
     bgImage: '/philosophy/clean-code.jpg',
   },
   {
-    icon: MessageSquare,
     title: 'Direct Communication',
     description: 'You work with me directly. No project managers, no middlemen.',
     bgImage: '/philosophy/communication.jpg',
   },
   {
-    icon: Zap,
     title: 'Experience = Efficiency',
     description: 'Two decades of solving problems means I ship faster than junior devs.',
     bgImage: '/philosophy/efficiency.jpg',
@@ -44,7 +38,7 @@ const principles = [
     <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
       {principles.map((principle, i) => (
         <div 
-          class="glass-card p-8 hover:border-amber-500/40 transition-all duration-300 overflow-hidden relative"
+          class="glass-card p-8 hover:border-amber-500/40 transition-all duration-300 overflow-hidden relative group"
           style={`animation-delay: ${i * 100}ms`}
         >
           <!-- Background Image -->
