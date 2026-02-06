@@ -59,6 +59,17 @@ const {
     <slot />
   </div>
   
+  <!-- Scroll to top on page load/refresh -->
+  <script>
+    if (history.scrollRestoration) {
+      history.scrollRestoration = 'manual';
+    }
+    window.addEventListener('beforeunload', () => {
+      window.scrollTo(0, 0);
+    });
+    window.scrollTo(0, 0);
+  </script>
+  
   <!-- Tawk.to Chat -->
   <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
