@@ -37,8 +37,8 @@ export async function onRequestPost(context) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'DAMediaCo Contact <noreply@damediaco.com>',
-        to: 'hello@damediaco.com',
+        from: 'onboarding@resend.dev',
+        to: 'millerd79@gmail.com',
         reply_to: email,
         subject: `New Contact: ${name} - ${businessType}`,
         html: `
