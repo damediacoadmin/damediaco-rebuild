@@ -8,6 +8,7 @@ const projects = [
     tech: ['React', 'Node.js', 'PostgreSQL', 'Maps API'],
     link: 'https://mykavabar.com',
     category: 'Platform',
+    image: '/projects/mykavabar.jpg',
   },
   {
     title: 'SwipeBetter.ai',
@@ -15,6 +16,7 @@ const projects = [
     tech: ['Next.js', 'AI/ML', 'Stripe'],
     link: 'https://swipebetter.ai',
     category: 'SaaS',
+    image: '/projects/swipebetter.jpg',
   },
   {
     title: 'LLMfire.io',
@@ -22,6 +24,7 @@ const projects = [
     tech: ['React', 'API Integration', 'Real-time'],
     link: 'https://llmfire.io',
     category: 'Tool',
+    image: '/projects/llmfire.jpg',
   },
   {
     title: 'FreeToolBoxes.com',
@@ -29,6 +32,7 @@ const projects = [
     tech: ['Vanilla JS', 'Static', 'AdSense'],
     link: 'https://freetoolboxes.com',
     category: 'Tool',
+    image: '/projects/freetoolboxes.jpg',
   },
   {
     title: 'LobsterPad.com',
@@ -36,6 +40,7 @@ const projects = [
     tech: ['macOS', 'Installer', 'Gumroad'],
     link: 'https://lobsterpad.com',
     category: 'Product',
+    image: '/projects/lobsterpad.jpg',
   },
   {
     title: 'Blog Network',
@@ -43,6 +48,7 @@ const projects = [
     tech: ['Node.js', 'GitHub Actions', 'Cloudflare', 'SEO'],
     link: 'https://aisourcenews.com',
     category: 'Network',
+    image: '/projects/blog-network.jpg',
   },
 ];
 ---
@@ -65,9 +71,13 @@ const projects = [
           class="glass-card group overflow-hidden hover:border-teal-500/40 transition-all duration-300"
           style={`animation-delay: ${i * 100}ms`}
         >
-          {/* Image placeholder */}
-          <div class="h-48 bg-gradient-to-br from-teal-500/10 to-amber-500/10 flex items-center justify-center border-b border-white/5">
-            <span class="text-6xl opacity-20">{project.title[0]}</span>
+          {/* Project Image */}
+          <div class="h-48 overflow-hidden border-b border-white/5 bg-slate-900">
+            <img 
+              src={project.image} 
+              alt={project.title}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
           </div>
           
           <div class="p-6">
