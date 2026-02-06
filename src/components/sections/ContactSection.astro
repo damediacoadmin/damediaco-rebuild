@@ -16,18 +16,42 @@ import { Mail, MessageSquare, Send } from 'lucide-react';
     
     <!-- Calendly Inline Embed -->
     <div class="max-w-3xl mx-auto mb-16">
-      <div class="rounded-lg overflow-hidden">
+      <div class="rounded-lg overflow-hidden calendly-container">
         <!-- Calendly inline widget begin -->
-        <div class="calendly-inline-widget" data-url="https://calendly.com/millerd79/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=1e293b&text_color=ffffff&primary_color=14b8a6" style="min-width:320px;height:600px;"></div>
+        <div class="calendly-inline-widget" data-url="https://calendly.com/millerd79/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=1e293b&text_color=ffffff&primary_color=14b8a6" style="min-width:320px;height:700px;"></div>
         <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         <!-- Calendly inline widget end -->
       </div>
     </div>
     
     <style>
+      .calendly-container {
+        overflow: hidden;
+      }
+      
+      .calendly-inline-widget {
+        overflow: hidden !important;
+      }
+      
+      .calendly-inline-widget iframe {
+        overflow: hidden !important;
+      }
+      
+      /* Hide scrollbars in webkit browsers */
+      .calendly-container ::-webkit-scrollbar {
+        display: none;
+        width: 0 !important;
+        height: 0 !important;
+      }
+      
+      /* Hide scrollbars in Firefox */
+      .calendly-container * {
+        scrollbar-width: none;
+      }
+      
       @media (max-width: 768px) {
         .calendly-inline-widget {
-          height: 700px !important;
+          height: 800px !important;
         }
       }
     </style>
