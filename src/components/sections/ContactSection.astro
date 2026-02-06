@@ -18,11 +18,19 @@ import { Mail, MessageSquare, Send } from 'lucide-react';
     <div class="max-w-3xl mx-auto mb-16">
       <div class="rounded-lg overflow-hidden">
         <!-- Calendly inline widget begin -->
-        <div class="calendly-inline-widget" data-url="https://calendly.com/millerd79/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=1e293b&text_color=ffffff&primary_color=14b8a6" style="min-width:320px;height:480px;"></div>
+        <div class="calendly-inline-widget" data-url="https://calendly.com/millerd79/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=1e293b&text_color=ffffff&primary_color=14b8a6" style="min-width:320px;height:600px;"></div>
         <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         <!-- Calendly inline widget end -->
       </div>
     </div>
+    
+    <style>
+      @media (max-width: 768px) {
+        .calendly-inline-widget {
+          height: 700px !important;
+        }
+      }
+    </style>
     
     <div class="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
       <!-- Contact Form -->
