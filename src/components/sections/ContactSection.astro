@@ -14,6 +14,16 @@ import { Mail, MessageSquare, Send } from 'lucide-react';
       </p>
     </div>
     
+    <!-- Calendly Inline Embed -->
+    <div class="max-w-4xl mx-auto mb-16">
+      <div class="glass-card p-4">
+        <!-- Calendly inline widget begin -->
+        <div class="calendly-inline-widget" data-url="https://calendly.com/millerd79/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=1e293b&text_color=ffffff&primary_color=14b8a6" style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <!-- Calendly inline widget end -->
+      </div>
+    </div>
+    
     <div class="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
       <!-- Contact Form -->
       <div class="glass-card p-8">
@@ -103,9 +113,11 @@ import { Mail, MessageSquare, Send } from 'lucide-react';
         
         <div class="glass-card p-8">
           <MessageSquare className="w-8 h-8 text-teal-400 mb-4" />
-          <h3 class="text-xl font-semibold text-white mb-2">Quick Chat</h3>
-          <p class="text-slate-400 mb-3">Want to schedule a call? Calendly booking available for free consultations.</p>
-          <p class="text-sm text-slate-500 italic">Contact for scheduling link</p>
+          <h3 class="text-xl font-semibold text-white mb-2">Phone</h3>
+          <p class="text-slate-400 mb-3">Prefer to call?</p>
+          <a href="tel:+19545900333" class="text-teal-400 hover:text-teal-300 font-medium">
+            +1 (954) 590-0333
+          </a>
         </div>
       </div>
     </div>
