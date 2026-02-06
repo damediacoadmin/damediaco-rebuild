@@ -2,10 +2,10 @@
 import { Calendar, Rocket, Users, Code } from 'lucide-react';
 
 const stats = [
-  { icon: Calendar, value: 20, suffix: '+', label: 'Years Experience' },
-  { icon: Rocket, value: 50, suffix: '+', label: 'Projects Shipped' },
-  { icon: Users, value: 30, suffix: '+', label: 'Happy Clients' },
-  { icon: Code, value: 500, suffix: 'k+', label: 'Lines of Code' },
+  { icon: Calendar, value: 20, suffix: '+', label: 'Years Experience', bgImage: '/stats/experience.jpg' },
+  { icon: Rocket, value: 50, suffix: '+', label: 'Projects Shipped', bgImage: '/stats/projects.jpg' },
+  { icon: Users, value: 30, suffix: '+', label: 'Happy Clients', bgImage: '/stats/clients.jpg' },
+  { icon: Code, value: 500, suffix: 'k+', label: 'Lines of Code', bgImage: '/stats/code.jpg' },
 ];
 ---
 
@@ -13,15 +13,24 @@ const stats = [
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
       {stats.map((stat, index) => (
-        <div class="glass-card rounded-2xl p-6 lg:p-8 text-center group hover:border-teal-500/30 transition-all duration-300 stat-card" data-index={index}>
-          <div class="inline-flex items-center justify-center w-12 h-12 lg:w-14 lg:h-14 rounded-xl bg-teal-500/10 text-teal-400 mb-4 group-hover:scale-110 transition-transform duration-300">
-            <stat.icon class="w-6 h-6 lg:w-7 lg:h-7" />
+        <div class="glass-card rounded-2xl p-6 lg:p-8 text-center group hover:border-teal-500/30 transition-all duration-300 stat-card overflow-hidden relative" data-index={index}>
+          <!-- Background Image -->
+          <div class="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
+            <img 
+              src={stat.bgImage} 
+              alt="" 
+              class="w-full h-full object-cover"
+            />
           </div>
-          <div class="text-3xl lg:text-4xl xl:text-5xl font-bold font-display text-white mb-2">
-            <span class="stat-value" data-target={stat.value} data-suffix={stat.suffix}>0</span>
-            <span class="text-teal-400">{stat.suffix}</span>
+          
+          <!-- Content -->
+          <div class="relative z-10">
+            <div class="text-3xl lg:text-4xl xl:text-5xl font-bold font-display text-white mb-2">
+              <span class="stat-value" data-target={stat.value} data-suffix={stat.suffix}>0</span>
+              <span class="text-teal-400">{stat.suffix}</span>
+            </div>
+            <p class="text-sm lg:text-base text-slate-400">{stat.label}</p>
           </div>
-          <p class="text-sm lg:text-base text-slate-400">{stat.label}</p>
         </div>
       ))}
     </div>
