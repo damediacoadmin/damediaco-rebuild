@@ -6,21 +6,25 @@ const principles = [
     icon: Target,
     title: 'Quality Over Speed',
     description: 'I build it right the first time. No shortcuts, no technical debt.',
+    bgImage: '/philosophy/quality.jpg',
   },
   {
     icon: Code,
     title: 'Clean, Maintainable Code',
     description: '20+ years means I know how to write code that lasts and scales.',
+    bgImage: '/philosophy/clean-code.jpg',
   },
   {
     icon: MessageSquare,
     title: 'Direct Communication',
     description: 'You work with me directly. No project managers, no middlemen.',
+    bgImage: '/philosophy/communication.jpg',
   },
   {
     icon: Zap,
     title: 'Experience = Efficiency',
     description: 'Two decades of solving problems means I ship faster than junior devs.',
+    bgImage: '/philosophy/efficiency.jpg',
   },
 ];
 ---
@@ -40,12 +44,23 @@ const principles = [
     <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
       {principles.map((principle, i) => (
         <div 
-          class="glass-card p-8 hover:border-amber-500/40 transition-all duration-300"
+          class="glass-card p-8 hover:border-amber-500/40 transition-all duration-300 overflow-hidden relative"
           style={`animation-delay: ${i * 100}ms`}
         >
-          <principle.icon className="w-10 h-10 text-amber-400 mb-4" />
-          <h3 class="text-xl font-semibold text-white mb-3">{principle.title}</h3>
-          <p class="text-slate-400 leading-relaxed">{principle.description}</p>
+          <!-- Background Image -->
+          <div class="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
+            <img 
+              src={principle.bgImage} 
+              alt="" 
+              class="w-full h-full object-cover"
+            />
+          </div>
+          
+          <!-- Content -->
+          <div class="relative z-10">
+            <h3 class="text-xl font-semibold text-white mb-3">{principle.title}</h3>
+            <p class="text-slate-400 leading-relaxed">{principle.description}</p>
+          </div>
         </div>
       ))}
     </div>
