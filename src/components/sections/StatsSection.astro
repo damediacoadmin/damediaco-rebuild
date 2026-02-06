@@ -1,0 +1,92 @@
+---
+import { Calendar, Rocket, Users, Code } from 'lucide-react';
+
+const stats = [
+  { icon: Calendar, value: 20, suffix: '+', label: 'Years Experience' },
+  { icon: Rocket, value: 50, suffix: '+', label: 'Projects Shipped' },
+  { icon: Users, value: 30, suffix: '+', label: 'Happy Clients' },
+  { icon: Code, value: 500, suffix: 'k+', label: 'Lines of Code' },
+];
+---
+
+<section id="stats" class="py-20 lg:py-28 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+      {stats.map((stat, index) => (
+        <div class="glass-card rounded-2xl p-6 lg:p-8 text-center group hover:border-teal-500/30 transition-all duration-300 stat-card" data-index={index}>
+          <div class="inline-flex items-center justify-center w-12 h-12 lg:w-14 lg:h-14 rounded-xl bg-teal-500/10 text-teal-400 mb-4 group-hover:scale-110 transition-transform duration-300">
+            <stat.icon class="w-6 h-6 lg:w-7 lg:h-7" />
+          </div>
+          <div class="text-3xl lg:text-4xl xl:text-5xl font-bold font-display text-white mb-2">
+            <span class="stat-value" data-target={stat.value} data-suffix={stat.suffix}>0</span>
+            <span class="text-teal-400">{stat.suffix}</span>
+          </div>
+          <p class="text-sm lg:text-base text-slate-400">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Animate counters on scroll
+  const animateCounter = (element: HTMLElement, target: number, suffix: string) => {
+    const duration = 2000;
+    const start = performance.now();
+    const startValue = 0;
+
+    const step = (timestamp: number) => {
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const current = Math.floor(startValue + (target - startValue) * easeOutQuart);
+      element.textContent = current.toString();
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        element.textContent = target.toString();
+      }
+    };
+
+    requestAnimationFrame(step);
+  };
+
+  // Use Intersection Observer for scroll-triggered animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const card = entry.target as HTMLElement;
+        const valueEl = card.querySelector('.stat-value') as HTMLElement;
+        if (valueEl) {
+          const target = parseInt(valueEl.dataset.target || '0');
+          animateCounter(valueEl, target, valueEl.dataset.suffix || '');
+        }
+        observer.unobserve(card);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.stat-card').forEach(card => {
+    observer.observe(card);
+  });
+</script>
+
+<style>
+  .stat-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .stat-card:nth-child(1) { animation-delay: 0.1s; }
+  .stat-card:nth-child(2) { animation-delay: 0.2s; }
+  .stat-card:nth-child(3) { animation-delay: 0.3s; }
+  .stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

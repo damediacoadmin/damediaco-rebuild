@@ -1,0 +1,61 @@
+---
+import { Quote, Star } from 'lucide-react';
+
+const testimonials = [
+  {
+    quote: "David helped me get my business online fast. The site looks great on mobile and I started getting calls within the first week!",
+    author: "Local Business Owner",
+    rating: 5,
+  },
+  {
+    quote: "DAMediaCo took care of everything from SEO to design. Highly recommend them for any South Florida business looking to grow.",
+    author: "Restaurant Owner",
+    rating: 5,
+  },
+  {
+    quote: "Working with David was seamless. He understands what small business owners need and doesn't overcomplicate things.",
+    author: "Service Professional",
+    rating: 5,
+  },
+];
+---
+
+<section id="testimonials" class="py-16 md:py-24 relative">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold font-display mb-4">
+        <span class="text-white">Client</span>
+        <span class="text-gradient"> Feedback</span>
+      </h2>
+      <p class="text-lg text-slate-400 max-w-2xl mx-auto">
+        Real results from real clients
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-6">
+      {testimonials.map((testimonial, i) => (
+        <div 
+          class="glass-card p-8"
+          style={`animation-delay: ${i * 100}ms`}
+        >
+          <div class="flex items-start justify-between mb-4">
+            <Quote className="w-10 h-10 text-teal-400/20" />
+            <div class="flex gap-1">
+              {Array.from({ length: testimonial.rating }).map(() => (
+                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+              ))}
+            </div>
+          </div>
+          
+          <p class="text-slate-300 leading-relaxed mb-6 italic">
+            "{testimonial.quote}"
+          </p>
+          
+          <p class="text-sm font-medium text-teal-400">
+            — {testimonial.author}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,116 @@
+---
+import { ExternalLink, Github } from 'lucide-react';
+
+const projects = [
+  {
+    title: 'MyKavaBar.com',
+    description: 'Comprehensive kava bar directory platform with bar claiming, kavatender check-ins, events, and menus.',
+    tech: ['React', 'Node.js', 'PostgreSQL', 'Maps API'],
+    link: 'https://mykavabar.com',
+    category: 'Platform',
+  },
+  {
+    title: 'SwipeBetter.ai',
+    description: 'AI-powered dating profile optimization service for better matches on dating apps.',
+    tech: ['Next.js', 'AI/ML', 'Stripe'],
+    link: 'https://swipebetter.ai',
+    category: 'SaaS',
+  },
+  {
+    title: 'LLMfire.io',
+    description: 'Multi-model AI comparison platform. Test prompts across different LLMs side-by-side.',
+    tech: ['React', 'API Integration', 'Real-time'],
+    link: 'https://llmfire.io',
+    category: 'Tool',
+  },
+  {
+    title: 'FreeToolBoxes.com',
+    description: '50+ free online tools for developers and creators. Fast, client-side, no registration.',
+    tech: ['Vanilla JS', 'Static', 'AdSense'],
+    link: 'https://freetoolboxes.com',
+    category: 'Tool',
+  },
+  {
+    title: 'GetMeALicense.com',
+    description: 'SaaS license management platform with 6 voice options and automated delivery.',
+    tech: ['React', 'Node.js', 'Stripe', 'Resend', 'ElevenLabs'],
+    link: 'https://getmealicense.com',
+    category: 'SaaS',
+  },
+  {
+    title: 'LobsterPad.com',
+    description: 'macOS installer for Clawdbot/Moltbot. One-click setup, Apple-signed. $3 on Gumroad.',
+    tech: ['macOS', 'Installer', 'Gumroad'],
+    link: 'https://lobsterpad.com',
+    category: 'Product',
+  },
+  {
+    title: 'Blog Network',
+    description: '6 niche content sites: AISourceNews, KavaAtlas, BudgetSavvyGuide, CryptoCoinAtlas, iSportly, KpopRoundup. Multi-tenant architecture with auto-publishing.',
+    tech: ['Node.js', 'GitHub Actions', 'Cloudflare', 'SEO'],
+    link: 'https://aisourcenews.com',
+    category: 'Network',
+  },
+];
+---
+
+<section id="work" class="py-16 md:py-24 relative">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold font-display mb-4">
+        <span class="text-white">Recent</span>
+        <span class="text-gradient"> Projects</span>
+      </h2>
+      <p class="text-lg text-slate-400 max-w-2xl mx-auto">
+        Real products shipped. Real results delivered. Every project built with clean code and attention to detail.
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {projects.map((project, i) => (
+        <div 
+          class="glass-card group overflow-hidden hover:border-teal-500/40 transition-all duration-300"
+          style={`animation-delay: ${i * 100}ms`}
+        >
+          {/* Image placeholder */}
+          <div class="h-48 bg-gradient-to-br from-teal-500/10 to-amber-500/10 flex items-center justify-center border-b border-white/5">
+            <span class="text-6xl opacity-20">{project.title[0]}</span>
+          </div>
+          
+          <div class="p-6">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="text-xl font-semibold text-white group-hover:text-teal-400 transition-colors">
+                {project.title}
+              </h3>
+              <span class="text-xs px-2 py-1 rounded-full bg-teal-500/10 text-teal-400 border border-teal-500/20">
+                {project.category}
+              </span>
+            </div>
+            
+            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+              {project.description}
+            </p>
+            
+            <div class="flex flex-wrap gap-2 mb-4">
+              {project.tech.map(tech => (
+                <span class="text-xs px-2 py-1 rounded bg-slate-800/50 border border-slate-700 text-slate-300">
+                  {tech}
+                </span>
+              ))}
+            </div>
+            
+            <a 
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 text-teal-400 hover:text-teal-300 text-sm font-medium group/link"
+            >
+              Visit Site
+              <ExternalLink className="w-4 h-4 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

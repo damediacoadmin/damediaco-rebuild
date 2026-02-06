@@ -1,0 +1,57 @@
+---
+import { Heart, Github, Linkedin, Twitter } from 'lucide-react';
+---
+
+<footer class="border-t border-white/5 py-12">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-8 mb-8">
+      <!-- Brand -->
+      <div>
+        <h3 class="text-xl font-bold font-display text-gradient mb-3">DAMediaCo</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Building exceptional digital experiences for 20+ years.
+        </p>
+      </div>
+      
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-white font-semibold mb-3">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="#services" class="text-slate-400 hover:text-teal-400 text-sm transition">Services</a></li>
+          <li><a href="#work" class="text-slate-400 hover:text-teal-400 text-sm transition">Work</a></li>
+          <li><a href="#testimonials" class="text-slate-400 hover:text-teal-400 text-sm transition">Testimonials</a></li>
+          <li><a href="#faq" class="text-slate-400 hover:text-teal-400 text-sm transition">FAQ</a></li>
+          <li><a href="#contact" class="text-slate-400 hover:text-teal-400 text-sm transition">Contact</a></li>
+        </ul>
+      </div>
+      
+      <!-- Connect -->
+      <div>
+        <h4 class="text-white font-semibold mb-3">Connect</h4>
+        <div class="flex gap-3 mb-4">
+          <a href="https://github.com/damediacoadmin" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-slate-800/50 border border-slate-700 flex items-center justify-center hover:border-teal-500/40 hover:bg-slate-800 transition-all">
+            <Github className="w-4 h-4 text-slate-300" />
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-slate-800/50 border border-slate-700 flex items-center justify-center hover:border-teal-500/40 hover:bg-slate-800 transition-all">
+            <Linkedin className="w-4 h-4 text-slate-300" />
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-slate-800/50 border border-slate-700 flex items-center justify-center hover:border-teal-500/40 hover:bg-slate-800 transition-all">
+            <Twitter className="w-4 h-4 text-slate-300" />
+          </a>
+        </div>
+        <p class="text-slate-400 text-sm">
+          <a href="mailto:hello@damediaco.com" class="hover:text-teal-400 transition">hello@damediaco.com</a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-slate-500 text-sm">
+        © {new Date().getFullYear()} DAMediaCo. All rights reserved.
+      </p>
+      <p class="text-slate-500 text-sm flex items-center gap-1">
+        Built with <Heart className="w-4 h-4 text-red-500 fill-red-500" /> by David Miller
+      </p>
+    </div>
+  </div>
+</footer>

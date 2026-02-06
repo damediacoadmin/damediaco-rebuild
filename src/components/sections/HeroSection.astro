@@ -1,0 +1,155 @@
+---
+import { ArrowRight, Sparkles, Code, Terminal, Cpu } from 'lucide-react';
+
+const codeSnippets = [
+  { 
+    code: 'const build = async () => {\n  await dream();\n  await code();\n  return magic;\n};',
+    position: 'top-20 right-[10%]',
+    delay: '0s',
+    lang: 'TS'
+  },
+  { 
+    code: '<Experience\n  years={20}\n  quality="amazing"\n/>',
+    position: 'bottom-32 left-[8%]',
+    delay: '1s',
+    lang: 'JSX'
+  },
+  { 
+    code: 'npm install success\n✓ Performance\n✓ Beautiful\n✓ Scalable',
+    position: 'top-40 left-[5%]',
+    delay: '2s',
+    lang: 'BASH'
+  },
+];
+
+const techStack = ['React', 'Node.js', 'Astro', 'TypeScript', 'Tailwind'];
+---
+
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+  <!-- Animated background grid -->
+  <div class="absolute inset-0 opacity-20">
+    <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, rgba(6, 182, 212, 0.3) 1px, transparent 0); background-size: 40px 40px;"></div>
+  </div>
+  
+  <!-- Floating code snippets -->
+  {codeSnippets.map((snippet, i) => (
+    <div 
+      class={`absolute ${snippet.position} hidden lg:block opacity-30 float`}
+      style={`animation-delay: ${snippet.delay};`}
+    >
+      <div class="glass-card p-4 rounded-lg font-mono text-xs text-teal-300/80">
+        <div class="flex items-center gap-2 mb-2 pb-2 border-b border-white/10">
+          <div class="w-2 h-2 rounded-full bg-red-500/50"></div>
+          <div class="w-2 h-2 rounded-full bg-amber-500/50"></div>
+          <div class="w-2 h-2 rounded-full bg-teal-500/50"></div>
+          <span class="text-slate-500 ml-2 text-[10px]">{snippet.lang}</span>
+        </div>
+        <pre class="whitespace-pre">{snippet.code}</pre>
+      </div>
+    </div>
+  ))}
+  
+  <!-- Hero content -->
+  <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+    <!-- Badge -->
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-teal-500/20 text-teal-400 text-sm font-medium mb-8 animate-fade-in-up">
+      <Sparkles className="w-4 h-4" />
+      <span>20+ Years Building Amazing Products</span>
+    </div>
+    
+    <!-- Name -->
+    <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold font-display tracking-tight mb-4 animate-fade-in-up animate-delay-100">
+      <span class="text-white">David</span>
+      <span class="text-gradient"> Miller</span>
+    </h1>
+    
+    <!-- Tagline with typewriter effect -->
+    <div class="text-xl sm:text-2xl md:text-3xl text-slate-400 font-light mb-6 animate-fade-in-up animate-delay-200">
+      I build <span class="text-white font-medium" id="typewriter-text">amazing websites & apps</span><span class="text-teal-400 animate-pulse">|</span>
+    </div>
+    
+    <!-- Description -->
+    <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up animate-delay-300">
+      Full-stack developer transforming ideas into exceptional digital experiences. 
+      Clean code, stunning design, and products that actually work.
+    </p>
+    
+    <!-- Tech stack pills -->
+    <div class="flex flex-wrap justify-center gap-2 mb-12 animate-fade-in-up animate-delay-400">
+      {techStack.map(tech => (
+        <span class="px-4 py-1.5 rounded-full text-sm font-medium bg-slate-800/50 border border-slate-700 text-slate-300 hover:border-teal-500/30 hover:text-teal-400 transition-colors cursor-default">
+          {tech}
+        </span>
+      ))}
+    </div>
+    
+    <!-- CTAs -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up animate-delay-500">
+      <a href="#work" class="btn-primary group flex items-center gap-2 text-base">
+        View My Work
+        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+      </a>
+      <a href="#contact" class="btn-secondary text-base">
+        Start a Project
+      </a>
+    </div>
+    
+    <!-- Social proof -->
+    <div class="mt-16 pt-8 border-t border-white/5 animate-fade-in-up" style="animation-delay: 600ms;">
+      <p class="text-slate-500 text-sm mb-4">Trusted by innovative brands</p>
+      <div class="flex items-center justify-center gap-8 text-slate-600 font-display font-semibold text-lg">
+        <span>MyKavaBar</span>
+        <span class="text-teal-500/30">•</span>
+        <span>SwipeBetter</span>
+        <span class="text-teal-500/30">•</span>
+        <span>LLMfire</span>
+        <span class="text-teal-500/30">•</span>
+        <span>GetMeALicense</span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2">
+    <div class="w-6 h-10 rounded-full border-2 border-slate-600 flex justify-center pt-2">
+      <div class="w-1.5 h-3 bg-teal-500 rounded-full animate-bounce"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Typewriter effect
+  const words = ['amazing websites', 'web applications', 'SaaS products', 'digital experiences', 'e-commerce stores'];
+  let wordIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  const typewriterElement = document.getElementById('typewriter-text');
+  
+  function typeWriter() {
+    const currentWord = words[wordIndex];
+    
+    if (isDeleting) {
+      typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
+      charIndex++;
+    }
+    
+    let typeSpeed = isDeleting ? 50 : 100;
+    
+    if (!isDeleting && charIndex === currentWord.length) {
+      typeSpeed = 2000;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+      typeSpeed = 500;
+    }
+    
+    setTimeout(typeWriter, typeSpeed);
+  }
+  
+  // Start typewriter after initial render
+  setTimeout(typeWriter, 1000);
+</script>

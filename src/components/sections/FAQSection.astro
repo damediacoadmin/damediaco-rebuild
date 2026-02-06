@@ -1,0 +1,54 @@
+---
+import { ChevronDown } from 'lucide-react';
+
+const faqs = [
+  {
+    question: "How fast can you build a website?",
+    answer: "Depends on scope. Most small sites can be completed quickly once content and details are provided.",
+  },
+  {
+    question: "Do you work with existing websites?",
+    answer: "Yes. Redesigns, fixes, and rebuilds are available.",
+  },
+  {
+    question: "What do you need from me to start?",
+    answer: "Business name, what you do, preferred style, and any examples you like.",
+  },
+  {
+    question: "Can we do a one-time build or monthly plan?",
+    answer: "Yes. Both options are available depending on what you prefer.",
+  },
+  {
+    question: "Do you provide hosting?",
+    answer: "We can discuss the best setup for your needs during the quote process.",
+  },
+];
+---
+
+<section id="faq" class="py-16 md:py-24 relative">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold font-display mb-4">
+        <span class="text-white">Common</span>
+        <span class="text-gradient"> Questions</span>
+      </h2>
+    </div>
+    
+    <div class="space-y-4">
+      {faqs.map((faq, i) => (
+        <details 
+          class="glass-card p-6 group cursor-pointer"
+          style={`animation-delay: ${i * 50}ms`}
+        >
+          <summary class="flex items-center justify-between font-semibold text-white list-none">
+            <span>{faq.question}</span>
+            <ChevronDown className="w-5 h-5 text-teal-400 group-open:rotate-180 transition-transform" />
+          </summary>
+          <p class="mt-4 text-slate-400 leading-relaxed">
+            {faq.answer}
+          </p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
