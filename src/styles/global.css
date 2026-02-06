@@ -184,6 +184,16 @@ html {
   .float-delay-3 {
     animation-delay: -3s;
   }
+  
+  /* Breathing background */
+  .breathing-bg {
+    background: radial-gradient(
+      ellipse 80% 50% at 50% 50%,
+      rgba(6, 182, 212, 0.15),
+      transparent
+    );
+    animation: breathing 8s ease-in-out infinite;
+  }
 }
 
 /* Keyframes */
@@ -193,6 +203,17 @@ html {
   }
   50% {
     transform: translateY(-20px) rotate(2deg);
+  }
+}
+
+@keyframes breathing {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.25;
+    transform: scale(1.05);
   }
 }
 
