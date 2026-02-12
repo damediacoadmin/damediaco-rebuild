@@ -1,0 +1,205 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { cities } from '../data/cities';
+import type { CityData } from '../data/cities';
+
+export function getStaticPaths() {
+  return cities.map((city) => ({
+    params: { city: city.slug },
+    props: { city },
+  }));
+}
+
+interface Props {
+  city: CityData;
+}
+
+const { city } = Astro.props;
+
+const services = [
+  {
+    title: "Custom Web Development",
+    desc: `We build fast, responsive, mobile-first websites tailored to ${city.name} businesses. No templates — every site is designed from scratch to match your brand and serve your local customers.`,
+    icon: "🌐",
+  },
+  {
+    title: "Search Engine Optimization",
+    desc: `Dominate Google search results in ${city.name} and ${city.county} County. We implement local SEO strategies that put your business on the map — literally — when customers search for your services.`,
+    icon: "🔍",
+  },
+  {
+    title: "Digital Marketing",
+    desc: `From Google Ads to social media campaigns, we create targeted digital marketing strategies that reach ${city.name} residents and drive measurable results for your business.`,
+    icon: "📱",
+  },
+  {
+    title: "App Development",
+    desc: `Need a mobile app for your ${city.name} business? We build native and cross-platform applications that keep your customers engaged and your operations running smoothly.`,
+    icon: "📲",
+  },
+  {
+    title: "AI Solutions",
+    desc: `Leverage artificial intelligence to automate customer service, analyze ${city.name} market data, and give your business an edge that competitors can't match.`,
+    icon: "🤖",
+  },
+];
+
+const title = `Web Developer in ${city.name} — DAMedia Co`;
+const description = `Professional web development services in ${city.name}, ${city.county} County, FL. Custom websites, SEO, digital marketing, and AI solutions for local businesses. Call 954-590-0333.`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "DAMedia Co",
+  description: `Web development and digital marketing services for businesses in ${city.name}, Florida`,
+  url: `https://damediaco.com/web-developer-${city.slug}/`,
+  telephone: "+19545900333",
+  email: "dave@damediaco.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Coconut Creek",
+    addressRegion: "FL",
+    addressCountry: "US",
+  },
+  areaServed: {
+    "@type": "City",
+    name: city.name,
+    containedInPlace: {
+      "@type": "AdministrativeArea",
+      name: `${city.county} County, Florida`,
+    },
+  },
+  priceRange: "$$",
+  sameAs: ["https://damediaco.com"],
+};
+---
+
+<Layout title={title} description={description}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <link rel="canonical" href={`https://damediaco.com/web-developer-${city.slug}/`} />
+  </Fragment>
+
+  <Header />
+
+  <main class="relative z-10 pt-24 pb-16">
+    <!-- Hero -->
+    <section class="max-w-5xl mx-auto px-6 lg:px-8 py-16">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-sm font-medium mb-6">
+        <span>📍</span>
+        <span>{city.county} County, FL</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold font-display leading-tight mb-8">
+        Web Developer in <span class="text-gradient">{city.name}</span>
+      </h1>
+      <p class="text-lg md:text-xl text-slate-300 leading-relaxed max-w-3xl">
+        {city.intro}
+      </p>
+    </section>
+
+    <!-- Services -->
+    <section class="max-w-5xl mx-auto px-6 lg:px-8 py-16">
+      <h2 class="text-3xl md:text-4xl font-bold font-display mb-4">
+        Web Development Services for <span class="text-gradient">{city.name}</span> Businesses
+      </h2>
+      <p class="text-slate-400 mb-12 max-w-2xl">
+        {city.localFocus}
+      </p>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {services.map((service) => (
+          <div class="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-teal-500/30 transition-all duration-300">
+            <div class="text-3xl mb-4">{service.icon}</div>
+            <h3 class="text-xl font-bold text-white mb-3 font-display">{service.title}</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">{service.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Why Local -->
+    <section class="max-w-5xl mx-auto px-6 lg:px-8 py-16">
+      <div class="rounded-2xl bg-gradient-to-br from-teal-500/10 to-cyan-500/5 border border-teal-500/20 p-8 md:p-12">
+        <h2 class="text-3xl md:text-4xl font-bold font-display mb-6">
+          Why {city.name} Businesses Need a <span class="text-gradient">Professional Web Developer</span>
+        </h2>
+        <p class="text-lg text-slate-300 leading-relaxed mb-8">
+          {city.whyLocal}
+        </p>
+        {city.industries && city.industries.length > 0 && (
+          <div>
+            <h3 class="text-lg font-semibold text-white mb-4">Industries We Serve in {city.name}:</h3>
+            <div class="flex flex-wrap gap-2">
+              {city.industries.map((industry) => (
+                <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm text-slate-300 capitalize">
+                  {industry}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+        {city.neighborhoods && city.neighborhoods.length > 0 && (
+          <div class="mt-6">
+            <h3 class="text-lg font-semibold text-white mb-4">Areas We Serve:</h3>
+            <div class="flex flex-wrap gap-2">
+              {city.neighborhoods.map((n) => (
+                <span class="px-3 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/20 text-sm text-teal-300">
+                  {n}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="max-w-5xl mx-auto px-6 lg:px-8 py-16">
+      <div class="text-center">
+        <h2 class="text-3xl md:text-4xl font-bold font-display mb-6">
+          Ready to Build Your {city.name} Business's <span class="text-gradient">Digital Future</span>?
+        </h2>
+        <p class="text-lg text-slate-300 mb-8 max-w-2xl mx-auto">
+          Based in Coconut Creek and serving all of {city.county} County, DAMedia Co brings 20+ years of web development experience to {city.name} businesses. Let's talk about your project.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+          <a href="tel:9545900333" class="btn-primary text-lg py-3.5 px-8 w-full sm:w-auto text-center">
+            📞 Call 954-590-0333
+          </a>
+          <a href="mailto:dave@damediaco.com" class="px-8 py-3.5 rounded-xl border border-white/10 text-white hover:border-teal-500/30 hover:bg-white/5 transition-all duration-300 text-lg w-full sm:w-auto text-center">
+            ✉️ dave@damediaco.com
+          </a>
+        </div>
+        <p class="text-slate-500 text-sm">
+          Serving {city.name} and all of {city.county} County, Florida
+        </p>
+      </div>
+    </section>
+
+    <!-- Other Cities -->
+    <section class="max-w-5xl mx-auto px-6 lg:px-8 py-12 border-t border-white/5">
+      <h3 class="text-xl font-bold font-display text-white mb-6">
+        Also Serving Nearby Cities in {city.county} County
+      </h3>
+      <div class="flex flex-wrap gap-2">
+        {cities
+          .filter((c) => c.county === city.county && c.slug !== city.slug)
+          .slice(0, 12)
+          .map((c) => (
+            <a
+              href={`/web-developer-${c.slug}/`}
+              class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm text-slate-400 hover:text-teal-400 hover:border-teal-500/20 transition-all"
+            >
+              {c.name}
+            </a>
+          ))}
+        <a href="/service-areas/" class="px-3 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/20 text-sm text-teal-400 hover:bg-teal-500/20 transition-all">
+          View All Areas →
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
