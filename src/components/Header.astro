@@ -1,13 +1,15 @@
 ---
 import { Code2, Menu, X } from 'lucide-react';
 
+const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
+const base = isHome ? '' : '/';
 const navLinks = [
-  { href: '#services', label: 'Services' },
-  { href: '#work', label: 'Work' },
-  { href: '#philosophy', label: 'Philosophy' },
-  { href: '#testimonials', label: 'Testimonials' },
-  { href: '#faq', label: 'FAQ' },
-  { href: '#contact', label: 'Contact' },
+  { href: `${base}#services`, label: 'Services' },
+  { href: `${base}#work`, label: 'Work' },
+  { href: `${base}#philosophy`, label: 'Philosophy' },
+  { href: `${base}#testimonials`, label: 'Testimonials' },
+  { href: `${base}#faq`, label: 'FAQ' },
+  { href: `${base}#contact`, label: 'Contact' },
 ];
 ---
 
@@ -15,7 +17,7 @@ const navLinks = [
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <nav class="flex items-center justify-between h-16 lg:h-20">
       <!-- Logo -->
-      <a href="#" class="flex items-center gap-2 group">
+      <a href="/" class="flex items-center gap-2 group">
         <div class="relative w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center overflow-hidden group-hover:shadow-lg group-hover:shadow-teal-500/20 transition-all duration-300">
           <Code2 className="w-5 h-5 text-white" />
           <div class="absolute inset-0 bg-gradient-to-tr from-amber-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -40,7 +42,7 @@ const navLinks = [
       
       <!-- CTA -->
       <div class="hidden lg:flex items-center gap-4">
-        <a href="#contact" class="btn-primary text-sm py-2.5 px-5">
+        <a href={`${base}#contact`} class="btn-primary text-sm py-2.5 px-5">
           Let's Talk
         </a>
       </div>
